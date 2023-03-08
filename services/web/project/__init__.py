@@ -1,7 +1,11 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
+
+app = Flask(__name__,template_folder='template',
+                    static_url_path='/',
+                    static_folder='static')
+
 app.config.from_object("project.config.Config")
 db = SQLAlchemy(app)
 
@@ -16,7 +20,13 @@ class User(db.Model):
     def __init__(self, email):
         self.email = email
 
+@app.route('/')
+def index():
+	return render_template('index.html') 
 
-@app.route("/")
-def hello_world():
-    return jsonify(hello="world")
+# @app.route("/template/<path:filename>")
+# def templatefiles(filename):
+#     return send_from_directory(app.config["Template_FOLDER"], filename)
+# @app.route("/")
+# def hello_world():
+#     return jsonify(hello="world")
