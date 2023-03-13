@@ -26,4 +26,4 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: flash-on-docker-web:latest, abdulmoeez1225/flash-on-docker:${{github.run_number}}
+          tags: abdulmoeez1225/flash-on-docker:${{github.run_number}}
